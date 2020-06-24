@@ -46,7 +46,7 @@ jobs:
         echo "$DOWNLOAD"
         VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
         echo "Found bedrock_server $VERSION"
-        wget -q -O - "$DOWNLOAD"
+        wget "$DOWNLOAD"
         7z x $SERVER *.zip
         rm *.zip
         ls -lah
