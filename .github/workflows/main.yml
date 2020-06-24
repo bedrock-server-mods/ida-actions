@@ -23,5 +23,6 @@ jobs:
         echo $env:UserName
         $PASSWORD=type .\install_key.txt
         .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe /PASSWORD=$PASSWORD /SILENT /LOG=.\log
+        echo $?
         dir "C:\Program Files"
         type .\log
