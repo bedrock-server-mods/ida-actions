@@ -26,7 +26,7 @@ jobs:
     - name: Unpack everything
       run: |
         $IDA = "IDA PRO 7.2"
-        $EXE = "x64_*.exe"
+        $EXE = "x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe"
         $KEY = "install_key.txt"
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
         7z x innoextract*.zip *.exe
