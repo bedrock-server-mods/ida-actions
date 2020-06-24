@@ -15,7 +15,7 @@ jobs:
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     - name: Unpack IDA pro
-      run: 7z e ida.zip
+      run: 7z x ida.zip
 
     - name: Install IDA
       run: |
