@@ -63,7 +63,8 @@ jobs:
 
     - name: Running idat64
       run: |
-        .\ida\idat64.exe -B .\bedrock_server
+        #.\ida\idat64.exe -B .\bedrock_server
+        .\ida\idat64.exe -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
         dir
 
     - uses: actions/upload-artifact@v2
