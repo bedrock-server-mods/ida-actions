@@ -40,5 +40,10 @@ jobs:
         mv app ida
 
     - name: testing
-      run: curl -sL https://minecraft.net/en-us/download/server/bedrock/ | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//'
+      run: |
+        URL="https://minecraft.net/en-us/download/server/bedrock/"
+        DOWNLOAD=$(curl -sL "$URL" | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//')
+        echo "$DOWNLOAD"
+        VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
+        echo "$VERSION"
       shell: bash
