@@ -23,7 +23,7 @@ jobs:
         file: innoextract-1.8-windows.zip
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-    - name: Unpack everything
+    - name: Install IDA pro
       run: |
         $IDA = "IDA PRO 7.2"
         $EXE = "x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe"
@@ -36,6 +36,8 @@ jobs:
         del $KEY
         mv app ida
 
-    - name: Install IDA
+    - name: testing
       run: |
-        dir
+        wget
+        curl
+      shell: bash
