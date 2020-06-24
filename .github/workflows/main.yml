@@ -20,5 +20,6 @@ jobs:
     - name: Install IDA
       run: |
         dir
-        dir '.\IDA PRO 7.2\'
+        cd '.\IDA PRO 7.2\'
+        dir
         echo $?
