@@ -34,10 +34,13 @@ jobs:
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
         7z x innoextract*.zip *.exe
         del *.zip
-        .\innoextract.exe $EXE --silent --exclude-temp --password-file $KEY
+        #.\innoextract.exe $EXE --silent --exclude-temp --password-file $KEY
+        .\innoextract.exe $EXE --exclude-temp --password-file $KEY
         del *.exe
         del $KEY
         mv app ida
+        #debug:
+        dir ida
 
     - name: Downloading bedrock_server
       run: |
