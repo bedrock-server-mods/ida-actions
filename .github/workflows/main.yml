@@ -14,15 +14,23 @@ jobs:
         file: ida.zip
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-    - name: Unpack IDA pro
-      run: 7z x -sdel ida.zip
+    - name: Download innoextract
+      uses: i3h/download-release-asset@v1.0.0
+      with:
+        owner: dscharrer
+        repo: innoextract
+        tag: 1.8
+        file: innoextract-1.8-windows.zip
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+    - name: Unpack everything
+      run:
+        7z x -sdel ida.zip
+        7z x -sdel innoextract*.zip *.exe
 
     - name: Install IDA
       run: |
         cd '.\IDA PRO 7.2\'
         $PASSWORD=type .\install_key.txt
-        .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe /PASSWORD=$PASSWORD /SILENT /LOG=.\log
+        ..\innoextract.exe -q -P $PASSWORD x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe
         dir
-        dir 'C:\Program Files\'
-        dir 'C:\'
-        Get-WmiObject WmiMonitorID -Namespace root\wmi
