@@ -5,6 +5,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - name: Trying to use cached dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          C:\ProgramData\chocolatey\lib
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
     - name: Installing dependencies
       run: choco install curl grep sed
 
