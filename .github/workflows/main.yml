@@ -6,7 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Install deps
-      run: choco install curl grep
+      run: choco install curl grep sed
 
     - name: Download IDA pro
       uses: i3h/download-release-asset@v1.0.0
