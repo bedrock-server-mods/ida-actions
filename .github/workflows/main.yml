@@ -5,15 +5,15 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Trying to use cached dependencies
+    - name: Installing dependencies
+      run: choco install curl grep sed
+
+    - name: Caching dependencies
       uses: actions/cache@v2
       with:
         path: |
           C:\ProgramData\chocolatey\lib
         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
-
-    - name: Installing dependencies
-      run: choco install curl grep sed
 
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
