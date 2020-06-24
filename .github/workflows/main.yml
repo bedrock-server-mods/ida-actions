@@ -35,12 +35,15 @@ jobs:
         7z x innoextract*.zip *.exe
         del *.zip
         #.\innoextract.exe $EXE --silent --exclude-temp --password-file $KEY
-        .\innoextract.exe $EXE --exclude-temp --password-file $KEY
+        .\innoextract.exe $EXE --password-file $KEY
         del *.exe
         del $KEY
         mv app ida
         #debug:
         dir ida
+        #try install tmp:
+        msiexec /i tmp\python-2.7.13.amd64.msi /qn
+        .\tmp\vcredist_x64.exe /passive
 
     - name: Downloading bedrock_server
       run: |
