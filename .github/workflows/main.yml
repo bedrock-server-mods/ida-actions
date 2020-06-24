@@ -25,13 +25,9 @@ jobs:
 
     - name: Unpack everything
       run: |
-        7z x -sdel ida.zip
+        7z e -sdel ida.zip x64_*.exe install_key.txt
         7z x -sdel innoextract*.zip *.exe
 
     - name: Install IDA
       run: |
-        cd '.\IDA PRO 7.2\'
-        $PASSWORD=type .\install_key.txt
-        ..\innoextract.exe --silent --exclude-temp --password $PASSWORD x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe
-        $DIR=(Get-Item -Path ".\").FullName
-        echo $DIR
+        dir
