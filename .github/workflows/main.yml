@@ -5,10 +5,10 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Install deps
+    - name: Installing dependencies
       run: choco install curl grep sed
 
-    - name: Download IDA pro
+    - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
       with:
         owner: bedrock-server-mods
@@ -39,11 +39,14 @@ jobs:
         del $KEY
         mv app ida
 
-    - name: testing
+    - name: Downloading bedrock_server
       run: |
         URL="https://minecraft.net/en-us/download/server/bedrock/"
         DOWNLOAD=$(curl -sL "$URL" | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//')
         echo "$DOWNLOAD"
         VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
-        echo "$VERSION"
+        echo "Found $VERSION"
+        curl --insecure --silent --show-error --location --globoff "$DOWNLOAD" > bedrock_server.zip
+        7z x bedrock_server.zip bedrock_server
+        ls -lah
       shell: bash
