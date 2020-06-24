@@ -37,7 +37,4 @@ jobs:
         mv app ida
 
     - name: testing
-      run: |
-        wget
-        curl
-      shell: bash
+      run: wget -q -O - https://minecraft.net/en-us/download/server/bedrock/ | grep -Eo "https://\S*/bin-linux/\S*"
