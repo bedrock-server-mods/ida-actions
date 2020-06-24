@@ -24,7 +24,7 @@ jobs:
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     - name: Unpack everything
-      run:
+      run: |
         7z x -sdel ida.zip
         7z x -sdel innoextract*.zip *.exe
 
