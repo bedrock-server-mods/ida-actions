@@ -31,7 +31,7 @@ jobs:
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
         7z x innoextract*.zip *.exe
         del *.zip
-        .\innoextract.exe --silent --exclude-temp --password-file $KEY
+        .\innoextract.exe $EXE --silent --exclude-temp --password-file $KEY
 
     - name: Install IDA
       run: |
