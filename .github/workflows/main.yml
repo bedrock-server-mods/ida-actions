@@ -23,4 +23,5 @@ jobs:
         echo test, and deploy your project.
         dir
         tree
-        msiexec /i x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe /quiet
+        msiexec /?
+        x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175
