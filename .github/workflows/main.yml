@@ -6,14 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Installing dependencies
-      run: choco install curl grep sed
-
-    - name: Caching dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          C:\ProgramData\chocolatey\lib
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+      run: choco install wget grep sed
 
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
@@ -49,12 +42,12 @@ jobs:
     - name: Downloading bedrock_server
       run: |
         URL="https://minecraft.net/en-us/download/server/bedrock/"
-        DOWNLOAD=$(curl -sL "$URL" | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//')
+        DOWNLOAD=$(wget -q -O - "$URL" | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//')
         echo "$DOWNLOAD"
         VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
-        echo "Found $VERSION"
-        SERVER="bedrock_server.zip"
-        curl --insecure --silent --show-error --location --globoff "$DOWNLOAD" > $SERVER
-        7z x $SERVER bedrock_server
-        rm $SERVER
+        echo "Found bedrock_server $VERSION"
+        wget -q -O - "$DOWNLOAD"
+        7z x $SERVER *.zip
+        rm *.zip
+        ls -lah
       shell: bash
