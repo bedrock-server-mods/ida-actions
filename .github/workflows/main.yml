@@ -1,0 +1,25 @@
+name: Get database
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Download IDA pro
+      uses: i3h/download-release-asset@v1.0.0
+      with:
+        owner: bedrock-server-mods
+        repo: ida-pro-images
+        tag: latest
+        file: ida.zip
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+    - name: Unpack IDA pro
+      run: 7z e ida.zip
+
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+        dir
+        tree
