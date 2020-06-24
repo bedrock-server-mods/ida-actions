@@ -32,7 +32,9 @@ jobs:
         7z x innoextract*.zip *.exe
         del *.zip
         .\innoextract.exe $EXE --silent --exclude-temp --password-file $KEY
-        del *
+        del *.exe
+        del $KEY
+        mv app ida
 
     - name: Install IDA
       run: |
