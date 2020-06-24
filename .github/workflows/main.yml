@@ -26,4 +26,5 @@ jobs:
         echo $?
         dir "C:\Program Files"
         dir
+        echo "test" > "C:\Program Files\test"
         type .\log
