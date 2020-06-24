@@ -22,9 +22,9 @@ jobs:
         wmic cpu get Name
         echo $env:UserName
         $PASSWORD=type .\install_key.txt
+        echo $PASSWORD
         .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe /PASSWORD=$PASSWORD /VERYSILENT /LOG=.\log /SUPPRESSMSGBOXES
         echo $?
         echo "test" > "C:\Program Files\test"
         dir "C:\Program Files"
         dir
-        type .\log
