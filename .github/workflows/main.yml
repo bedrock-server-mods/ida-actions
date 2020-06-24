@@ -21,4 +21,4 @@ jobs:
       run: |
         echo %CD%
         dir
-        .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175 /SILENT
+        .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175 /?
