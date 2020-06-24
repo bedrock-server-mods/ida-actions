@@ -46,7 +46,8 @@ jobs:
         echo "$DOWNLOAD"
         VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
         echo "Found $VERSION"
-        curl --insecure --silent --show-error --location --globoff "$DOWNLOAD" > bedrock_server.zip
-        7z x bedrock_server.zip bedrock_server
-        ls -lah
+        SERVER="bedrock_server.zip"
+        curl --insecure --silent --show-error --location --globoff "$DOWNLOAD" > $SERVER
+        7z x $SERVER bedrock_server
+        rm $SERVER
       shell: bash
