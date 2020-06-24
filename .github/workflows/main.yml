@@ -19,6 +19,5 @@ jobs:
 
     - name: Run a multi-line script
       run: |
-        echo %CD%
-        dir
-        .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175 /HELP
+        $PASSWORD=type .\install_key.txt
+        .\x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe /PASSWORD=$PASSWORD /SILENT
