@@ -26,8 +26,9 @@ jobs:
     - name: Unpack everything
       run: |
         $IDA = "IDA PRO 7.2"
-        7z e -sdel ida.zip "$IDA/x64_*.exe" "$IDA/install_key.txt"
-        7z x -sdel innoextract*.zip *.exe
+        7z e ida.zip "$IDA/x64_*.exe" "$IDA/install_key.txt"
+        7z x innoextract*.zip *.exe
+        del *.zip
 
     - name: Install IDA
       run: |
