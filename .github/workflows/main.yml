@@ -22,7 +22,7 @@ jobs:
       with:
         owner: dscharrer
         repo: innoextract
-        tag: 1.8
+        tag: "1.8"
         file: innoextract-1.8-windows.zip
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
@@ -41,13 +41,20 @@ jobs:
 
     - name: Downloading bedrock_server
       run: |
-        URL="https://minecraft.net/en-us/download/server/bedrock/"
-        DOWNLOAD=$(wget -q -O - "$URL" | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//')
-        echo "$DOWNLOAD"
-        VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
-        echo "Found bedrock_server $VERSION"
-        wget "$DOWNLOAD"
-        7z x $SERVER *.zip
-        rm *.zip
+        #URL="https://minecraft.net/en-us/download/server/bedrock/"
+        #DOWNLOAD=$(wget -q -O - "$URL" | grep -Eo "https://\S*/bin-linux/\S*" | sed -e 's/^"//' -e 's/"$//')
+        #echo "$DOWNLOAD"
+        #VERSION=$(echo "$DOWNLOAD" | grep -Eo "([0-9]+\.){3}[0-9]+")
+        #echo "Found bedrock_server $VERSION"
+        #wget "$DOWNLOAD"
+        #7z x $SERVER *.zip
+        #rm *.zip
+        #ls -lah
+        wget -q https://www.pastefile.com/download/phn98s > bedrock_server.zip
         ls -lah
       shell: bash
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: database
+        target: "*.i64"
