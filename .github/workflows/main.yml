@@ -8,5 +8,5 @@ jobs:
       - name: test
         run: |
           7z
-          wget
+          #wget
           curl
