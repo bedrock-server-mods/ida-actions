@@ -22,6 +22,15 @@ jobs:
         file: ida.zip
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
+    - name: Download innoextract
+      uses: i3h/download-release-asset@v1.0.0
+      with:
+        owner: dscharrer
+        repo: innoextract
+        tag: "1.8"
+        file: innoextract-1.8-linux.tar.xz
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
     - name: Installing IDA pro
       run: |
         set -ex
@@ -31,7 +40,12 @@ jobs:
         KEY="install_key.txt"
 
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
-        PASSWORD=$(cat "$KEY")
-        wine "$EXE" /SILENT /PASSWORD=$PASSWORD /LOG=./log
-        cat log
+
+        tar -xJf innoextract-1.8-linux.tar.xz
+        ./innoextract-1.8-linux/innoextract --silent --exclude-temp --password-file $KEY
+
+        ls -lah
+        mv app ida
+        cp /usr/bin/sed .
+        wine ida/idat64.exe -B sed
         ls -lah
