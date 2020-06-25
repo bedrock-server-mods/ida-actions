@@ -5,8 +5,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: |
-          7z
-          #wget
-          curl
+    - name: Installing wine
+      run: |
+        sudo dpkg --add-architecture i386
+        wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+        sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
+        sudo apt install --install-recommends winehq-staging
+
+    - name: Downloading IDA pro
+      uses: i3h/download-release-asset@v1.0.0
+      with:
+        owner: bedrock-server-mods
+        repo: ida-pro-images
+        tag: latest
+        file: ida.zip
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+    - name: Installing IDA pro
+      run: |
+        set -ex
+
+        IDA="IDA PRO 7.2"
+        EXE="x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe"
+        KEY="install_key.txt"
+
+        7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
+        PASSWORD=$(cat "$KEY")
+        wine "$EXE" /SILENT /PASSWORD=$PASSWORD /LOG=./log
+        cat log
+        ls -lah
