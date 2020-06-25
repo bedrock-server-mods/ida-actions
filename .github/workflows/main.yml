@@ -33,7 +33,7 @@ jobs:
 
     - name: Installing IDA pro
       run: |
-        set -ex
+        #set -ex
 
         export DISPLAY=:1
         Xvfb :1 -screen 0 1920x1080x24 &
