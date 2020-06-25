@@ -23,7 +23,7 @@ jobs:
       run: installer.ps1
 
     - name: Downloading bedrock_server
-      run: Invoke-WebRequest -Uri https://www.pastefile.com/download/phn98s -OutFile bedrock_server
+      run: wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
       shell: bash
 
     - name: Analyzing binary file
