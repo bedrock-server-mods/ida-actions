@@ -71,7 +71,7 @@ jobs:
         #.\ida\idat64.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
         #.\ida\idat.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
         set -ex
-        ./ida/idat64.exe -B ./bedrock_server
+        ./ida/idat.exe -B ./bedrock_server
         ls -lah
       shell: bash
 
