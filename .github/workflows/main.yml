@@ -58,4 +58,4 @@ jobs:
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
 
         #wine ida/idat64.exe -B bedrock_server
-        wine ida/idat64.exe -z=00ffffff -c -A -S"ida\idc\analysis.idc" bedrock_server
+        wine ida/idat64.exe -z=00ffffff -c -A -S"ida/idc/analysis.idc" bedrock_server
