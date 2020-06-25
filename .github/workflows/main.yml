@@ -20,7 +20,7 @@ jobs:
       run: .\installer.ps1
 
     - name: Downloading bedrock_server
-      run: Invoke-WebRequest -Uri https://www.pastefile.com/download/phn98s -OutFile bedrock_server
+      run: .\download.ps1
 
     - name: Analyzing binary file
       run: .\analyze.ps1
