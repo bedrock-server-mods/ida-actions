@@ -66,7 +66,8 @@ jobs:
         #.\ida\idat64.exe -B .\bedrock_server
         #.\ida\idat64.exe -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
         #.\ida\idat64.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
-        .\ida\idat.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
+        #.\ida\idat.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
+        .\ida\idat64.exe
         dir
 
     - uses: actions/upload-artifact@v2
