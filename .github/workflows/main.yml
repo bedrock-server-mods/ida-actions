@@ -28,4 +28,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: database
-        target: "*.i64"
+        target: bedrock_server.i64
