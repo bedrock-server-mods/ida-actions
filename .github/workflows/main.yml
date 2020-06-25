@@ -11,7 +11,7 @@ jobs:
         wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
         sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
         sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-        sudo apt install --install-recommends wine-devel-amd64
+        sudo apt install --install-recommends wine-devel
 
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
