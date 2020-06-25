@@ -27,7 +27,7 @@ jobs:
       shell: bash
 
     - name: Analyzing binary file
-      run: \& 'C:\\Program Files\\IDA 7.2\\idat64.exe' -B bedrock_server
+      run: "\\& 'C:\\Program Files\\IDA 7.2\\idat64.exe' -B bedrock_server"
 
     - uses: actions/upload-artifact@v2
       with:
