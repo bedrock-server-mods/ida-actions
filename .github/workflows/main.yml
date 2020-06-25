@@ -26,10 +26,10 @@ jobs:
       run: |
         set -ex
 
-        winecfg
-
         export DISPLAY=:1
         Xvfb :1 -screen 0 1920x1080x24 &
+
+        winecfg
 
         IDA="IDA PRO 7.2"
         EXE="x64_idapronw_hexx64w_181105_de455c480e11ef1ec91473028f4dd175.exe"
@@ -38,7 +38,7 @@ jobs:
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
 
         PASSWORD=$(cat "$KEY")
-        wine "$EXE" /SILENT /PASSWORD $PASSWORD /LOG=./log
+        wine "$EXE" /SILENT /PASSWORD $PASSWORD /LOG=./log || cat log
         cat log
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
         ls -lah
