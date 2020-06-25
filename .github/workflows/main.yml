@@ -20,7 +20,7 @@ jobs:
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     - name: Installing IDA pro
-      run: installer.ps1
+      run: .\installer.ps1
 
     - name: Downloading bedrock_server
       run: wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
