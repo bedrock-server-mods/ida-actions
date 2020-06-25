@@ -22,18 +22,10 @@ jobs:
         file: ida.zip
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-    - name: Download innoextract
-      uses: i3h/download-release-asset@v1.0.0
-      with:
-        owner: dscharrer
-        repo: innoextract
-        tag: "1.8"
-        file: innoextract-1.8-linux.tar.xz
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
     - name: Installing IDA pro
       run: |
-        #set -ex
+        set -ex
+
         winecfg
 
         export DISPLAY=:1
@@ -45,17 +37,9 @@ jobs:
 
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
 
-        tar -xJf innoextract-1.8-linux.tar.xz
-        ./innoextract-1.8-linux/innoextract "$EXE" --silent --password-file $KEY
-
-        mv app ida
-        rm -rf *.zip innoextract* "$EXE" "$KEY"
-        #debug
-        ls -lah
-
-        wine msiexec /i tmp/python-2.7.13.amd64.msi /qn
-
+        PASSWORD=$(cat "$KEY")
+        wine "$EXE" /SILENT /PASSWORD $PASSWORD /LOG=./log
+        cat log
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
-
-        #wine ida/idat64.exe -B bedrock_server
-        wine ida/idat64.exe -z=00ffffff -c -A -S"ida/idc/analysis.idc" bedrock_server
+        ls -lah
+        wine ~/.wine/drive_c/Program\ Files/IDA\ 7.2/idat64.exe -D bedrock_server
