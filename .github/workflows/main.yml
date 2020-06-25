@@ -6,7 +6,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Installing dependencies
-      run: choco install wget grep sed
+      #run: choco install wget grep sed
+      run: choco install wget
 
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
