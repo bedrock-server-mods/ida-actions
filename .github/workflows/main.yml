@@ -7,9 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Installing dependencies
-      run: choco install wget grep sed
-
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
       with:
@@ -23,8 +20,7 @@ jobs:
       run: .\installer.ps1
 
     - name: Downloading bedrock_server
-      run: wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
-      shell: bash
+      run: .\download.ps1
 
     - name: Analyzing binary file
       run: .\analyze.ps1
