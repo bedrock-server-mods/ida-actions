@@ -44,8 +44,9 @@ jobs:
         tar -xJf innoextract-1.8-linux.tar.xz
         ./innoextract-1.8-linux/innoextract "$EXE" --silent --exclude-temp --password-file $KEY
 
-        ls -lah
         mv app ida
-        cp /usr/bin/sed .
-        wine ida/idat64.exe -B sed
+        rm -rf *.zip innoextract* "$EXE" "$KEY"
         ls -lah
+
+        wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
+        wine ida/idat64.exe -B bedrock_server
