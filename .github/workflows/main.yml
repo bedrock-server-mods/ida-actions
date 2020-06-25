@@ -5,17 +5,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Installing wine and fake X-server
+    - name: Installing wine
       run: |
         sudo dpkg --add-architecture i386
         wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
         sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
         sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
         sudo apt install --install-recommends winehq-stable
-
-        sudo apt install xvfb
-        export DISPLAY=:1
-        Xvfb :1 -screen 0 1920x1080x24 &
 
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
@@ -53,4 +49,8 @@ jobs:
         ls -lah
 
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
-        wineconsole ida/idat64.exe -B bedrock_server
+
+        export DISPLAY=:1
+        Xvfb :1 -screen 0 1920x1080x24 &
+
+        wine64 ida/idat64.exe -B bedrock_server
