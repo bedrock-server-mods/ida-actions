@@ -5,9 +5,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Installing dependencies
+    #- name: Installing dependencies
       #run: choco install wget grep sed
-      run: choco install wget
+      #run: choco install wget
 
     - name: Downloading IDA pro
       uses: i3h/download-release-asset@v1.0.0
@@ -57,10 +57,12 @@ jobs:
         #7z x $SERVER *.zip
         #rm *.zip
         #ls -lah
-        wget -q https://www.pastefile.com/download/phn98s
-        mv phn98s bedrock_server
-        ls -lah
-      shell: bash
+
+        #wget -q https://www.pastefile.com/download/phn98s
+        #mv phn98s bedrock_server
+        #ls -lah
+        Invoke-WebRequest -Uri https://www.pastefile.com/download/phn98s -OutFile bedrock_server
+      shell: pwsh
 
     - name: Running idat64
       run: |
@@ -69,7 +71,7 @@ jobs:
         #.\ida\idat64.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
         #.\ida\idat.exe -z=00ffffff -c -A -S".\ida\idc\analysis.idc" .\bedrock_server
         set -ex
-        ./ida/ida64.exe -B bedrock_server
+        ./ida/idat64.exe -B ./bedrock_server
         ls -lah
       shell: bash
 
