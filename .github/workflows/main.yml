@@ -53,4 +53,4 @@ jobs:
         ls -lah
 
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
-        wine ida/idat64.exe -B bedrock_server
+        wineconsole ida/idat64.exe -B bedrock_server
