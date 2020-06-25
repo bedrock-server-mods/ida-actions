@@ -42,7 +42,7 @@ jobs:
         7z e ida.zip "$IDA/$EXE" "$IDA/$KEY"
 
         tar -xJf innoextract-1.8-linux.tar.xz
-        ./innoextract-1.8-linux/innoextract --silent --exclude-temp --password-file $KEY
+        ./innoextract-1.8-linux/innoextract "$EXE" --silent --exclude-temp --password-file $KEY
 
         ls -lah
         mv app ida
