@@ -8,4 +8,3 @@ $PASSWORD = type $KEY
 & .\$EXE /VERYSILENT /PASSWORD=$PASSWORD | Out-Null
 
 reg import patch.reg
-dir 'C:\Program Files\IDA 7.2'
