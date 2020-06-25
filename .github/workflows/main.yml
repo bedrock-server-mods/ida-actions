@@ -42,4 +42,4 @@ jobs:
         cat log
         wget -q https://www.pastefile.com/download/phn98s -O bedrock_server
         ls -lah
-        wine ~/.wine/drive_c/Program\ Files/IDA\ 7.2/idat64.exe -D bedrock_server
+        wine ~/.wine/drive_c/Program\ Files/IDA\ 7.2/idat64.exe -B bedrock_server
