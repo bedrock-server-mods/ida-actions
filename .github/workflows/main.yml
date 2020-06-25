@@ -43,8 +43,8 @@ jobs:
         #debug:
         dir ida
         #try install tmp:
-        msiexec /i tmp\python-2.7.13.amd64.msi /qn
-        .\tmp\vcredist_x64.exe /passive
+        #msiexec /i tmp\python-2.7.13.amd64.msi /qn
+        #.\tmp\vcredist_x64.exe /passive
 
     - name: Downloading bedrock_server
       run: |
