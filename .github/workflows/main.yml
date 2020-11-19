@@ -29,7 +29,7 @@ jobs:
     - name: Analyzing binary file
       run: .\analyze.ps1
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v1
       with:
         name: database
-        path: "*.i64"
+        path: bedrock_server.i64
