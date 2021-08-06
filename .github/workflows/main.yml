@@ -11,6 +11,7 @@ jobs:
 
       - name: Get processor model
         run: Get-WmiObject win32_Processor
+        shell: powershell
 
       - name: Downloading IDA pro
         uses: i3h/download-release-asset@v1.0.0
