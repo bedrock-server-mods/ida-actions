@@ -6,6 +6,11 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+
+    strategy:
+      matrix:
+        ida_version: [ 7.6 ]
+
     steps:
       - uses: actions/checkout@v2
 
@@ -14,17 +19,18 @@ jobs:
         shell: powershell
 
       - name: Downloading IDA pro
-        uses: i3h/download-release-asset@v1.0.0
+        uses: i3h/download-release-asset@v1
         with:
           owner: bedrock-server-mods
           repo: ida-pro-images
-          tag: latest
+          tag: ${{ matrix.ida_version }}
           file: ida.zip
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Installing IDA pro
         run: |
-          dir
-          7z x -o"C:\Program Files" ida.zip
-          dir "C:\Program Files"
-          reg import patch.reg
+          mv ida.zip installer/${{ matrix.ida_version }}
+          cd installer/${{ matrix.ida_version }}
+          $IDA_DIR = .\installer.ps1
+          echo $IDA_DIR
+          dir "$IDA_DIR"
