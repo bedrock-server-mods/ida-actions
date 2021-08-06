@@ -7,31 +7,23 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Get processor model
-      run: Get-WmiObject win32_Processor
-      shell: powershell
+      - name: Get processor model
+        run: Get-WmiObject win32_Processor
 
-    - name: Downloading IDA pro
-      uses: i3h/download-release-asset@v1.0.0
-      with:
-        owner: bedrock-server-mods
-        repo: ida-pro-images
-        tag: latest
-        file: ida.zip
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Downloading IDA pro
+        uses: i3h/download-release-asset@v1.0.0
+        with:
+          owner: bedrock-server-mods
+          repo: ida-pro-images
+          tag: latest
+          file: ida.zip
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-    - name: Installing IDA pro
-      run: .\installer.ps1
-
-    - name: Downloading bedrock_server
-      run: .\download.ps1
-
-    - name: Analyzing binary file
-      run: .\analyze.ps1
-
-    - uses: actions/upload-artifact@v1
-      with:
-        name: database
-        path: bedrock_server.zip
+      - name: Installing IDA pro
+        run: |
+          dir
+          7z x -o"C:\Program Files" ida.zip
+          dir "C:\Program Files"
+          reg import patch.reg
