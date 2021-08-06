@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        ida_version: [ 7.6 ]
+        ida_version: [ 7.6, 7.5, 7.2 ]
 
     steps:
       - uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
         run: Get-WmiObject win32_Processor
         shell: powershell
 
-      - name: Downloading IDA pro
+      - name: Downloading IDA Pro
         uses: i3h/download-release-asset@v1
         with:
           owner: bedrock-server-mods
@@ -29,7 +29,7 @@ jobs:
           file: ida.zip
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-      - name: Installing IDA pro
+      - name: Installing IDA Pro ${{ matrix.ida_version }}
         run: |
           mv ida.zip installer/${{ matrix.ida_version }}
           cd installer/${{ matrix.ida_version }}
