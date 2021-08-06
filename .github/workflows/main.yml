@@ -34,5 +34,6 @@ jobs:
           mv ida.zip installer/${{ matrix.ida_version }}
           cd installer/${{ matrix.ida_version }}
           $IDA_DIR = .\installer.ps1 | Select-Object -Last 1
-          echo $IDA_DIR
-          dir "$IDA_DIR"
+          cp ../../database.idc "$IDA_DIR\idc\analysis.idc"
+          echo "$IDA_DIR\idc\analysis.idc"
+          dir "$IDA_DIR\idc"
