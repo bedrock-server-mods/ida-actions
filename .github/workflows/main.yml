@@ -37,10 +37,9 @@ jobs:
           cp ../../database.idc "$IDA_DIR\idc\analysis.idc"
           echo "IDA_DIR=$IDA_DIR" >> $env:GITHUB_ENV
 
-      - name: Analyzing binary file
-        run: |
-          "$env:IDA_DIR\idat64.exe" -P+ -B filename
+      - name: Downloading bedrock_server
+        run: .\download.ps1
 
       - name: Analyzing binary file
         run: |
-          "$env:IDA_DIR\idat64.exe" -P+ -B filename
+          & "$env:IDA_DIR\idat64.exe" -P+ -B bedrock_server
