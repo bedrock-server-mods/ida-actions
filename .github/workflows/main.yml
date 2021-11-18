@@ -43,3 +43,10 @@ jobs:
       - name: Analyzing binary file
         run: |
           & "$env:IDA_DIR\idat64.exe" -P+ -B bedrock_server
+          7z a bedrock_server.zip bedrock_server.i64
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: database-${{ matrix.ida_version }}
+          path: bedrock_server.zip
+
