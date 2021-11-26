@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         ida_version: [ 7.6, 7.5, 7.2 ]
+        bds_platform: [ win, linux ]
 
     steps:
       - uses: actions/checkout@v2
@@ -30,23 +31,15 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Installing IDA Pro ${{ matrix.ida_version }}
-        run: |
-          mv ida.zip installer/${{ matrix.ida_version }}
-          cd installer/${{ matrix.ida_version }}
-          $IDA_DIR = .\installer.ps1 | Select-Object -Last 1
-          cp ../../database.idc "$IDA_DIR\idc\analysis.idc"
-          echo "IDA_DIR=$IDA_DIR" >> $env:GITHUB_ENV
+        run: .\installer.ps1
 
       - name: Downloading bedrock_server
-        run: .\download.ps1
+        run: .\download.ps1 ${{ matrix.bds_platform }}
 
       - name: Analyzing binary file
-        run: |
-          & "$env:IDA_DIR\idat64.exe" -P+ -B bedrock_server
-          7z a bedrock_server.zip bedrock_server.i64
+        run: .\analyze.ps1 ${{ matrix.bds_platform }}
 
       - uses: actions/upload-artifact@v1
         with:
-          name: database-${{ matrix.ida_version }}
+          name: bedrock-server-${{ matrix.bds_platform }}-database-${{ matrix.ida_version }}
           path: bedrock_server.zip
-
