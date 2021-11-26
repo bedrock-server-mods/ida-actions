@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        ida_version: [ 7.6, 7.5, 7.2 ]
+        ida_version: [ 7.6 ]
         bds_platform: [ win, linux ]
 
     steps:
