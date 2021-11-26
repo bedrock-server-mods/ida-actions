@@ -14,4 +14,4 @@ else
 }
 
 & "$env:IDA_DIR\idat64.exe" -P+ -B $FILENAME
-7z a bedrock_server.zip bedrock_server.i64
+7z a bedrock_server.zip "$FILENAME.i64"
