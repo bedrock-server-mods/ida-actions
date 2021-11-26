@@ -31,7 +31,7 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Installing IDA Pro ${{ matrix.ida_version }}
-        run: .\installer.ps1
+        run: .\installer.ps1 ${{ matrix.ida_version }}
 
       - name: Downloading bedrock_server
         run: .\download.ps1 ${{ matrix.bds_platform }}
